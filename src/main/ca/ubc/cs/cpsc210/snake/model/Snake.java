@@ -94,7 +94,7 @@ public class Snake {
         body.add(0, new Cell(head.getRow(), head.getColumn()));
 
         if (canGrow()) {
-            nutritionConsumed = nutritionConsumed - NUTRITION_TO_GROW;
+            nutritionConsumed -= NUTRITION_TO_GROW;
         } else {
             body.remove(body.size() - 1);
         }
