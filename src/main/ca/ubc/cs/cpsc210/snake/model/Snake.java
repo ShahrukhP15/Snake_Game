@@ -71,7 +71,7 @@ public class Snake {
                 direction = Direction.DOWN;
                 break;
             case UP:
-                direction = Direction.UP;
+                direction = Direction.RIGHT;
                 break;
             case DOWN:
                 direction = Direction.LEFT;
@@ -94,9 +94,9 @@ public class Snake {
         body.add(0, new Cell(head.getRow(), head.getColumn()));
 
         if (canGrow()) {
-            nutritionConsumed -= NUTRITION_TO_GROW;
+            nutritionConsumed = nutritionConsumed - NUTRITION_TO_GROW;
         } else {
-            body.remove(body.size());
+            body.remove(body.size() - 1);
         }
 
         moveHead();
@@ -118,7 +118,7 @@ public class Snake {
                 head = new Cell(head.getRow(), head.getColumn() + 1);
                 break;
             case UP:
-                head = new Cell(head.getRow() + 1, head.getColumn());
+                head = new Cell(head.getRow() - 1, head.getColumn());
                 break;
             case DOWN:
                 head = new Cell(head.getRow() + 1, head.getColumn());
