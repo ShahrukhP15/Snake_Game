@@ -71,7 +71,7 @@ public class SnakeGame {
 
     // EFFECTS: returns true if game is over
     public boolean isOver() {
-        return snake.selfIntersects() && !isInBounds(snake.getPosition());
+        return snake.selfIntersects() || !isInBounds(snake.getPosition());
     }
 
     // EFFECTS: returns true if cell is in bounds of game

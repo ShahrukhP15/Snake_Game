@@ -38,7 +38,7 @@ class SnakeGameTest {
         Cell snakePosition = testSnakeGame.getSnakeHeadPosition();
         int distanceToLeftWall = snakePosition.getColumn();
 
-        for(int i = 0; i < distanceToLeftWall; i++) {
+        for(int i = 0; i < distanceToLeftWall - 1; i++) {
             testSnakeGame.update();
         }
 
@@ -64,6 +64,8 @@ class SnakeGameTest {
         testSnakeGame.update();
 
         assertTrue(testSnakeGame.isOver());
+
+
     }
 
     @Test
@@ -72,7 +74,7 @@ class SnakeGameTest {
         Cell snakePosition = testSnakeGame.getSnakeHeadPosition();
         int distanceToTopWall = snakePosition.getRow();
 
-        for(int i = 0; i < distanceToTopWall; i++) {
+        for(int i = 0; i < distanceToTopWall - 1; i++) {
             testSnakeGame.update();
         }
 
