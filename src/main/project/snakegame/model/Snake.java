@@ -1,4 +1,4 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -7,21 +7,21 @@ import java.util.List;
 // Represents a snake.
 public class Snake {
     public static final int NUTRITION_TO_GROW = 50;
-    private Cell head;
-    private List<Cell> body;
+    private Screen head;
+    private List<Screen> body;
     private Direction direction;
     private int nutritionConsumed;
 
     // EFFECTS: snake's head is at given position, body is empty and direction is right;
     //          snake has consumed no nutrition
-    public Snake(Cell head) {
+    public Snake(Screen head) {
         this.head = head;
         body = new LinkedList<>();
         direction = Direction.RIGHT;
         nutritionConsumed = 0;
     }
 
-    public Cell getPosition() {
+    public Screen getPosition() {
         return head;
     }
 
@@ -29,7 +29,7 @@ public class Snake {
         return direction;
     }
 
-    public List<Cell> getBodyPositions() {
+    public List<Screen> getBodyPositions() {
         return Collections.unmodifiableList(body);
     }
 
@@ -91,7 +91,7 @@ public class Snake {
     //           grow *before* this move, it grows by one cell and amount of nutrition needed to grow is deducted from
     //           nutrition consumed
     public void move() {
-        body.add(0, new Cell(head.getRow(), head.getColumn()));
+        body.add(0, new Screen(head.getRow(), head.getColumn()));
 
         if (canGrow()) {
             nutritionConsumed -= NUTRITION_TO_GROW;
@@ -112,16 +112,16 @@ public class Snake {
     private void moveHead() {
         switch (direction) {
             case LEFT:
-                head = new Cell(head.getRow(), head.getColumn() - 1);
+                head = new Screen(head.getRow(), head.getColumn() - 1);
                 break;
             case RIGHT:
-                head = new Cell(head.getRow(), head.getColumn() + 1);
+                head = new Screen(head.getRow(), head.getColumn() + 1);
                 break;
             case UP:
-                head = new Cell(head.getRow() - 1, head.getColumn());
+                head = new Screen(head.getRow() - 1, head.getColumn());
                 break;
             case DOWN:
-                head = new Cell(head.getRow() + 1, head.getColumn());
+                head = new Screen(head.getRow() + 1, head.getColumn());
                 break;
             default:
                 break;

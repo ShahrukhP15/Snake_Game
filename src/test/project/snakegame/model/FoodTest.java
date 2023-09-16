@@ -1,4 +1,4 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,19 +12,19 @@ class FoodTest {
 
     @BeforeEach
     void runBefore() {
-        testFood = new Food(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2));
+        testFood = new Food(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2));
     }
 
     @Test
     void testConstructor() {
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2), testFood.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2), testFood.getPosition());
         assertEquals(Food.INITIAL_NUTRITIONAL_VALUE, testFood.getNutritionalValue());
     }
 
     @Test
     void testConstructorWithNutritionalValue() {
-        Food otherFood = new Food(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 ), 50);
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2), otherFood.getPosition());
+        Food otherFood = new Food(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 ), 50);
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2), otherFood.getPosition());
         assertEquals(50, otherFood.getNutritionalValue());
     }
 

@@ -1,11 +1,11 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 import java.util.*;
 
 // Represents a game of snake played on a board of size BOARD_ROWS * BOARD_COLS with
 // row number increasing from top to bottom and column number increasing from
 // left to right.
-public class SnakeGame {
+public class Game {
     public static final int BOARD_COLS = 11;
     public static final int BOARD_ROWS = BOARD_COLS;
 
@@ -14,9 +14,9 @@ public class SnakeGame {
     private Food food;
 
     // EFFECTS: snake is at centre of board and food is at a random cell on board
-    public SnakeGame() {
+    public Game() {
         randomNumberGenerator = new Random();
-        snake = new Snake(new Cell(BOARD_ROWS / 2, BOARD_COLS / 2));
+        snake = new Snake(new Screen(BOARD_ROWS / 2, BOARD_COLS / 2));
         food = createFood();
     }
 
@@ -33,11 +33,11 @@ public class SnakeGame {
         }
     }
 
-    public Cell getSnakeHeadPosition() {
+    public Screen getSnakeHeadPosition() {
         return snake.getPosition();
     }
 
-    public List<Cell> getSnakeBodyPositions() {
+    public List<Screen> getSnakeBodyPositions() {
         return snake.getBodyPositions();
     }
 
@@ -49,7 +49,7 @@ public class SnakeGame {
         return snake.length();
     }
 
-    public Cell getFoodPosition() {
+    public Screen getFoodPosition() {
         return food.getPosition();
     }
 
@@ -75,9 +75,9 @@ public class SnakeGame {
     }
 
     // EFFECTS: returns true if cell is in bounds of game
-    private boolean isInBounds(Cell cell) {
-        return cell.getColumn() >= 0 && cell.getColumn() < BOARD_COLS
-                && cell.getRow() >= 0 && cell.getRow() < BOARD_ROWS;
+    private boolean isInBounds(Screen screen) {
+        return screen.getColumn() >= 0 && screen.getColumn() < BOARD_COLS
+                && screen.getRow() >= 0 && screen.getRow() < BOARD_ROWS;
     }
 
     // EFFECTS: returns true if snake can eat
@@ -87,7 +87,7 @@ public class SnakeGame {
 
     // EFFECTS:  returns food at random location other than location of snake's head
     private Food createFood() {
-        Cell position = randomCell();
+        Screen position = randomCell();
 
         while (position.equals(snake.getPosition())) {
             position = randomCell();
@@ -97,7 +97,7 @@ public class SnakeGame {
     }
 
     // EFFECTS: returns a cell at a randomly chosen location on the board
-    private Cell randomCell() {
-        return new Cell(randomNumberGenerator.nextInt(BOARD_ROWS), randomNumberGenerator.nextInt(BOARD_COLS));
+    private Screen randomCell() {
+        return new Screen(randomNumberGenerator.nextInt(BOARD_ROWS), randomNumberGenerator.nextInt(BOARD_COLS));
     }
 }

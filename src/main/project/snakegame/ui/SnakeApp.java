@@ -1,7 +1,7 @@
-package ca.ubc.cs.cpsc210.snake.ui;
+package project.snakegame.ui;
 
-import ca.ubc.cs.cpsc210.snake.model.Cell;
-import ca.ubc.cs.cpsc210.snake.model.SnakeGame;
+import project.snakegame.model.Screen;
+import project.snakegame.model.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +12,11 @@ import java.awt.event.KeyEvent;
 
 // Represents the main frame in which the Snake game will appear
 class SnakeApp extends JFrame {
-    private static final int WIDTH = SnakeGame.BOARD_COLS * Cell.CELL_PIXELS;
-    private static final int HEIGHT = SnakeGame.BOARD_ROWS * Cell.CELL_PIXELS;
-    private static final Color GAME_OVER_COLOUR = new Color(80, 40, 80);
+    private static final int WIDTH = Game.BOARD_COLS * Screen.CELL_PIXELS;
+    private static final int HEIGHT = Game.BOARD_ROWS * Screen.CELL_PIXELS;
+    private static final Color GAME_OVER_COLOUR = new Color(180, 40, 30);
     private static final int INTERVAL = 500;
-    private SnakeGame game;
+    private Game game;
     private SnakeGameRenderer renderer;
 
     // EFFECTS: sets up window in which Snake game will be played
@@ -25,7 +25,7 @@ class SnakeApp extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        game = new SnakeGame();
+        game = new Game();
         renderer = new SnakeGameRenderer(game);
         addKeyListener(new KeyHandler());
         centreOnScreen();

@@ -1,4 +1,4 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ class SnakeTest {
 
     @BeforeEach
     void runBefore() {
-        testSnake = new Snake(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2));
+        testSnake = new Snake(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2));
     }
 
     @Test
@@ -53,28 +53,28 @@ class SnakeTest {
     void testMoveRight() {
         setSnakeDirection(testSnake, Direction.RIGHT);
         testSnake.move();
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 1), testSnake.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 1), testSnake.getPosition());
     }
 
     @Test
     void testMoveLeft() {
         setSnakeDirection(testSnake, Direction.LEFT);
         testSnake.move();
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 - 1), testSnake.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 - 1), testSnake.getPosition());
     }
 
     @Test
     void testMoveUp() {
         setSnakeDirection(testSnake, Direction.UP);
         testSnake.move();
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2 - 1, SnakeGame.BOARD_COLS / 2), testSnake.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2 - 1, Game.BOARD_COLS / 2), testSnake.getPosition());
     }
 
     @Test
     void testMoveDown() {
         setSnakeDirection(testSnake, Direction.DOWN);
         testSnake.move();
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2 + 1, SnakeGame.BOARD_COLS / 2), testSnake.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2 + 1, Game.BOARD_COLS / 2), testSnake.getPosition());
     }
 
     @Test
@@ -82,12 +82,12 @@ class SnakeTest {
         setSnakeDirection(testSnake, Direction.RIGHT);
         growBodyByTwo();
         testSnake.move();
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 3), testSnake.getPosition());
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 3), testSnake.getPosition());
 
-        List<Cell> body = testSnake.getBodyPositions();
+        List<Screen> body = testSnake.getBodyPositions();
         assertEquals(2, body.size());
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 2), body.get(0));
-        assertEquals(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 1), body.get(1));
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 2), body.get(0));
+        assertEquals(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 1), body.get(1));
     }
 
     @Test
@@ -145,18 +145,18 @@ class SnakeTest {
         growBodyByTwo();
         testSnake.rotateRight();
         growBodyByTwo();
-        List<Cell> snakeBody = testSnake.getBodyPositions();
+        List<Screen> snakeBody = testSnake.getBodyPositions();
         assertEquals(4, snakeBody.size());
 
-        List<Cell> expected = new LinkedList<>();
-        expected.add(new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2));
-        expected.add(0, new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 1));
-        expected.add(0, new Cell(SnakeGame.BOARD_ROWS / 2, SnakeGame.BOARD_COLS / 2 + 2));
-        expected.add(0, new Cell(SnakeGame.BOARD_ROWS / 2 + 1, SnakeGame.BOARD_COLS / 2 + 2));
+        List<Screen> expected = new LinkedList<>();
+        expected.add(new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2));
+        expected.add(0, new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 1));
+        expected.add(0, new Screen(Game.BOARD_ROWS / 2, Game.BOARD_COLS / 2 + 2));
+        expected.add(0, new Screen(Game.BOARD_ROWS / 2 + 1, Game.BOARD_COLS / 2 + 2));
         assertEquals(expected, snakeBody);
 
         testSnake.move();
-        expected.add(0, new Cell(SnakeGame.BOARD_ROWS / 2 + 2, SnakeGame.BOARD_COLS / 2 + 2));
+        expected.add(0, new Screen(Game.BOARD_ROWS / 2 + 2, Game.BOARD_COLS / 2 + 2));
         expected.remove(expected.size() - 1);
         assertEquals(expected, testSnake.getBodyPositions());
     }

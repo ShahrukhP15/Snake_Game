@@ -1,15 +1,15 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 // Represents a cell - a location on the board.
-public class Cell {
+public class Screen {
     // size of cell in screen coordinates
-    public static final int CELL_PIXELS = 30;
+    public static final int CELL_PIXELS = 40;
 
     private int column;   // the column that this cell lies in (first column is 0, second is 1, ...)
     private int row;      // the row that this cell lies in (first row is 0, second is 1, ...)
 
     // EFFECTS: constructs cell at given row and column on board
-    public Cell(int row, int column) {
+    public Screen(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -46,12 +46,12 @@ public class Cell {
             return false;
         }
 
-        Cell cell = (Cell) o;
+        Screen screen = (Screen) o;
 
-        if (column != cell.column) {
+        if (column != screen.column) {
             return false;
         }
-        return row == cell.row;
+        return row == screen.row;
     }
 
     @Override

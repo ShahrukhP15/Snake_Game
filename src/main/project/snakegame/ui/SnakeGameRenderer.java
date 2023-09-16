@@ -1,20 +1,20 @@
-package ca.ubc.cs.cpsc210.snake.ui;
+package project.snakegame.ui;
 
-import ca.ubc.cs.cpsc210.snake.model.Cell;
-import ca.ubc.cs.cpsc210.snake.model.Food;
-import ca.ubc.cs.cpsc210.snake.model.SnakeGame;
+import project.snakegame.model.Screen;
+import project.snakegame.model.Food;
+import project.snakegame.model.Game;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 // Renderer for snake game
 class SnakeGameRenderer {
-    private static final Color HEAD_COLOUR = new Color(150, 150, 10);
-    private static final Color BODY_COLOUR = new Color(210, 210, 10);
-    private SnakeGame game;
+    private static final Color HEAD_COLOUR = new Color(50, 170, 210);
+    private static final Color BODY_COLOUR = new Color(110, 110, 210);
+    private Game game;
 
     // EFFECTS: game to render is set to given game
-    SnakeGameRenderer(SnakeGame game) {
+    SnakeGameRenderer(Game game) {
         this.game = game;
     }
 
@@ -29,9 +29,9 @@ class SnakeGameRenderer {
     // EFFECTS:  draws food onto graphics
     private void drawFood(Graphics graphics) {
         final double FILL_PERCENT = 0.75;
-        final int OFFSET = (int) (Cell.CELL_PIXELS * (1.0 - FILL_PERCENT)) / 2;
-        final int SIZE = (int) (Cell.CELL_PIXELS * FILL_PERCENT);
-        Cell foodPosition = game.getFoodPosition();
+        final int OFFSET = (int) (Screen.CELL_PIXELS * (1.0 - FILL_PERCENT)) / 2;
+        final int SIZE = (int) (Screen.CELL_PIXELS * FILL_PERCENT);
+        Screen foodPosition = game.getFoodPosition();
 
         graphics.setColor(computeColour());
         graphics.fillRect(foodPosition.getScreenHorizontalCoord() + OFFSET,
@@ -98,14 +98,14 @@ class SnakeGameRenderer {
     // EFFECTS:  draws head background onto graphics
     private void drawBackground(Graphics graphics) {
         graphics.setColor(HEAD_COLOUR);
-        graphics.fillOval(-Cell.CELL_PIXELS / 2, -Cell.CELL_PIXELS / 2, Cell.CELL_PIXELS, Cell.CELL_PIXELS);
+        graphics.fillOval(-Screen.CELL_PIXELS / 2, -Screen.CELL_PIXELS / 2, Screen.CELL_PIXELS, Screen.CELL_PIXELS);
     }
 
     // MODIFIES: graphics
     // EFFECTS:  draws eyes onto graphics
     private void drawEyes(Graphics graphics) {
-        final int OFFSET = Cell.CELL_PIXELS / 8;
-        final int EYE_DIAMETER = Cell.CELL_PIXELS / 5;
+        final int OFFSET = Screen.CELL_PIXELS / 8;
+        final int EYE_DIAMETER = Screen.CELL_PIXELS / 5;
 
         graphics.setColor(Color.BLACK);
         graphics.fillOval(-OFFSET - EYE_DIAMETER, OFFSET, EYE_DIAMETER, EYE_DIAMETER);
@@ -116,26 +116,26 @@ class SnakeGameRenderer {
     // EFFECTS:  draws snake's body onto graphics
     private void drawBody(Graphics graphics) {
         graphics.setColor(BODY_COLOUR);
-        for (Cell next : game.getSnakeBodyPositions()) {
+        for (Screen next : game.getSnakeBodyPositions()) {
             drawCell(graphics, next);
         }
     }
 
     // MODIFIES: g
     // EFFECTS:  draws cell onto graphics
-    private void drawCell(Graphics graphics, Cell cell) {
-        graphics.fillOval(cell.getScreenHorizontalCoord(), cell.getScreenVerticalCoord(),
-                Cell.CELL_PIXELS, Cell.CELL_PIXELS);
+    private void drawCell(Graphics graphics, Screen screen) {
+        graphics.fillOval(screen.getScreenHorizontalCoord(), screen.getScreenVerticalCoord(),
+                Screen.CELL_PIXELS, Screen.CELL_PIXELS);
     }
 
     // MODIFIES: graphics
     // EFFECTS:  transforms graphics so it is centred on cell
     private AffineTransform setUpTransform(Graphics2D graphics) {
-        Cell head = game.getSnakeHeadPosition();
+        Screen head = game.getSnakeHeadPosition();
 
         AffineTransform savedTransform = graphics.getTransform();
-        graphics.translate(head.getScreenHorizontalCoord() + Cell.CELL_PIXELS / 2,
-                head.getScreenVerticalCoord() + Cell.CELL_PIXELS / 2);
+        graphics.translate(head.getScreenHorizontalCoord() + Screen.CELL_PIXELS / 2,
+                head.getScreenVerticalCoord() + Screen.CELL_PIXELS / 2);
         return savedTransform;
     }
 

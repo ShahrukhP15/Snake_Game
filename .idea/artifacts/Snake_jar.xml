@@ -2,8 +2,8 @@
   <artifact type="jar" name="Snake:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Snake_jar</output-path>
     <root id="archive" name="Snake.jar">
-      <element id="module-output" name="SnakeWithBugs" />
-      <element id="module-test-output" name="SnakeWithBugs" />
+      <element id="module-output" name="SnakeGame" />
+      <element id="module-test-output" name="SnakeGame" />
     </root>
   </artifact>
 </component>

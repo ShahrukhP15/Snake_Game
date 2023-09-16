@@ -1,4 +1,4 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 // Represents a direction of travel for the snake.
 public enum Direction {

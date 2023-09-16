@@ -1,26 +1,26 @@
-package ca.ubc.cs.cpsc210.snake.model;
+package project.snakegame.model;
 
 // Represents food.
 public class Food {
     public static final int DECAY_AMOUNT = 10;
     public static final int INITIAL_NUTRITIONAL_VALUE = 100;
 
-    private Cell position;
+    private Screen position;
     private int nutritionalValue;
 
     // EFFECTS: food has INITIAL_NUTRITIONAL_VALUE and is located at given cell
-    public Food(Cell position) {
+    public Food(Screen position) {
         this.position = position;
         nutritionalValue = INITIAL_NUTRITIONAL_VALUE;
     }
 
     // EFFECTS: food has given nutritional value and is located at given cell
-    public Food(Cell position, int nutritionalValue) {
+    public Food(Screen position, int nutritionalValue) {
         this.position = position;
         this.nutritionalValue = nutritionalValue;
     }
 
-    public Cell getPosition() {
+    public Screen getPosition() {
         return position;
     }
 
